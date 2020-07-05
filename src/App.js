@@ -20,10 +20,8 @@ class App extends React.Component {
   // This component is one of two that's required to bring authentication to the app
   componentDidMount() {
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-      console.log(userAuth);
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
-
         userRef.onSnapshot((snapShot) => {
           this.setState({
             currentUser: {
@@ -31,6 +29,7 @@ class App extends React.Component {
               ...snapShot.data(),
             },
           });
+          console.log(this.state);
         });
       } else {
         this.setState({ currentUser: userAuth });
