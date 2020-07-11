@@ -3,11 +3,14 @@ import { Link } from "react-router-dom";
 
 // Higher order component which are functions that return a new souped up component
 import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 import { auth } from "../../firebase/firebase.utils";
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 import "./header.styles.scss";
 import CartIcon from "../cart-icon/cart-icon.component";
 import Cart from "../cart/cart.component";
+import { selectCartHidden } from "../../redux/cart/cart.selectors";
+import { selectCurrentUser } from "../../redux/user/user.selectors";
 
 const Header = ({ currentUser, hidden }) => (
   <div className="header">
@@ -37,9 +40,9 @@ const Header = ({ currentUser, hidden }) => (
 );
 
 // Used for Redux so that the component can access the state
-const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
-  currentUser,
-  hidden,
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+  hidden: selectCartHidden,
 });
 
 // export wrapped in connect to implement Redux
