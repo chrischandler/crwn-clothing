@@ -39,7 +39,7 @@ class App extends React.Component {
   }
 
   componentWillUnmount() {
-    // To close the subscription
+    // To close the subscription now that App is no longer rendered
     this.unsubscribeFromAuth();
   }
 
