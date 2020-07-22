@@ -31,6 +31,6 @@ export function* fetchCollectionsStart() {
   );
 }
 
-export function* cartSagas() {
+export function* shopSagas() {
   yield all([call(fetchCollectionsStart)]);
 }
