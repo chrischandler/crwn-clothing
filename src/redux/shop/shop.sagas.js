@@ -11,7 +11,6 @@ import {
 } from "../shop/shop.actions";
 
 export function* fetchCollectionsAsync() {
-  yield console.log("called saga fetchCollectionsAsync()");
   try {
     const collectionRef = firestore.collection("collections");
     const snapshot = yield collectionRef.get();

@@ -15,6 +15,7 @@ import {
 
 // Combined generator code
 export function* getShapshotFromUserAuth(userAuth) {
+  console.log("inside of getSnapshotFromUserAuth function");
   try {
     const userRef = yield call(createUserProfileDocument, userAuth);
     const userSnapshot = yield userRef.get();
@@ -35,9 +36,10 @@ export function* signInWithGoogle() {
 
 // Email sign in - generator function
 export function* signInWithEmail({ payload: { email, password } }) {
+  console.log("inside of signInWithEmail function");
   try {
     const { user } = yield auth.signInWithEmailAndPassword(email, password);
-    getShapshotFromUserAuth(user);
+    yield getShapshotFromUserAuth(user);
   } catch (error) {
     yield put(signInFailure(error));
   }
